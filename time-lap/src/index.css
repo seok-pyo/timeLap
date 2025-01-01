@@ -12,3 +12,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#timer {
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  width: 50vw;
+}
+
+#lap {
+  background-color: gray;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
