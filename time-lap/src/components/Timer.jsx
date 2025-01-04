@@ -1,4 +1,4 @@
-import Lap from './Lap.jsx';
+import Lap from './lap.jsx';
 
 export default function Timer() {
   return (
