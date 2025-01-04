@@ -4,12 +4,11 @@ export default function Lap() {
   const nowTime = useRef(null);
 
   const [startTime, setStartTime] = useState(null);
+  const [elapsTime, setElapsTime] = useState(0);
   const [now, setNow] = useState(null);
 
   function handleStart() {
-    if (startTime !== null) {
-      setStartTime((prev) => prev);
-    } else {
+    if (startTime === null) {
       setStartTime(Date.now());
     }
     setNow(Date.now());
@@ -22,18 +21,25 @@ export default function Lap() {
 
   function handleStop() {
     clearInterval(nowTime.current);
+    if (startTime !== null) {
+      const currentElapedTime = Date.now() - startTime;
+      setElapsTime((prev) => (prev += currentElapedTime));
+      setStartTime(null);
+    }
   }
 
-  let passedSecond = 0;
+  let passedSecond = elapsTime / 1000;
   if (startTime !== null && now !== null) {
-    passedSecond = (now - startTime) / 1000;
+    passedSecond += (now - startTime) / 1000;
   }
 
   return (
-    <li id='lap'>
-      <p>{passedSecond.toFixed(3)}</p>
-      <button onClick={handleStart}>START</button>
-      <button onClick={handleStop}>STOP</button>
-    </li>
+    <ol>
+      <li id='lap'>
+        <p>{passedSecond.toFixed(3)}</p>
+        <button onClick={handleStart}>START</button>
+        <button onClick={handleStop}>STOP</button>
+      </li>
+    </ol>
   );
 }
