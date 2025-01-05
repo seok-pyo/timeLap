@@ -6,7 +6,6 @@ export default function Timer() {
       <h1>Hello</h1>
       <ol id='timer'>
         <Lap />
-        <Lap />
       </ol>
     </>
   );
