@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, memo } from 'react';
 
-export default function Input() {
+const Input = memo(function Input() {
   const [inputVal, setInputVal] = useState(null);
   const inputs = useRef(null);
   console.log('input rendered');
@@ -15,4 +15,6 @@ export default function Input() {
       <button onClick={handleClick}>set</button>
     </>
   );
-}
+});
+
+export default Input;
