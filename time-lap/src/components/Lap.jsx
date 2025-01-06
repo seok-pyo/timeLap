@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
+import Input from './Input';
 
 export default function Lap() {
   const nowTime = useRef(null);
-  // const lapTimeArray = useRef([]);
 
   const [lapTime, setLapTime] = useState([]);
   const [startTime, setStartTime] = useState(null);
@@ -25,12 +25,17 @@ export default function Lap() {
     clearInterval(nowTime.current);
     if (startTime !== null) {
       const currentElapedTime = Date.now() - startTime;
-      console.log(Date.now(), 'first Date Now');
       setElapsTime((prev) => (prev += currentElapedTime));
       setStartTime(null);
       setLapTime((prev) => {
-        console.log(Date.now(), 'second Date Now');
-        return [passedSecond, ...prev];
+        return [
+          {
+            id: Math.random() * 100,
+            lapTime: (currentElapedTime / 1000).toFixed(2),
+            title: null,
+          },
+          ...prev,
+        ];
       });
     }
   }
@@ -45,17 +50,20 @@ export default function Lap() {
     <>
       <ol>
         <li id='lap'>
-          <p>{passedSecond.toFixed(2)}</p>
-          <button onClick={handleStart}>START</button>
-          <button onClick={handleStop}>STOP</button>
+          <h1>{passedSecond.toFixed(2)}</h1>
         </li>
+        <button onClick={handleStart}>START</button>
+        <button onClick={handleStop}>STOP</button>
       </ol>
       <ol>
-        {lapTime.map((time, idx) => (
-          <li id='lap' key={time - idx}>
-            {time}
-          </li>
-        ))}
+        {lapTime.map((time) => {
+          return (
+            <li id='lap' key={time.id}>
+              <div>{time.lapTime}</div>
+              <Input />
+            </li>
+          );
+        })}
       </ol>
     </>
   );
