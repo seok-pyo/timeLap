@@ -14,12 +14,11 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = memo(function Input({ handleInput }) {
+const Input = memo(function Input({ handleInput, keyId }) {
+  // console.log('INPUT RENDERED');
   const inputs = useRef(null);
 
-  function handleClick() {
-    handleInput(inputs.current.value);
-  }
+  // console.log('this is input Value', inputs.current.value);
 
   return (
     <>
@@ -29,7 +28,13 @@ const Input = memo(function Input({ handleInput }) {
         placeholder='Tag your time'
         className='input'
       />
-      <button onClick={handleClick}>set</button>
+      <button
+        onClick={() => {
+          handleInput(inputs.current.value, keyId);
+        }}
+      >
+        set
+      </button>
     </>
   );
 });

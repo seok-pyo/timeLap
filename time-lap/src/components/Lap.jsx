@@ -48,24 +48,22 @@ export default function Lap() {
     // [passedSecond, ...lapTimeArray.current];
   }
 
-  function handleInput(inputValue) {
+  function handleInput(inputValue, id) {
+    // console.log('this is inside of handleInput', inputValue, id);
     setLapTime((prev) => {
-      return [
-        {
-          title: inputValue, // 다시 시도
-        },
-      ];
+      return prev.map((time) =>
+        time.id === id ? { ...time, title: inputValue } : time
+      );
     });
+    console.log(lapTime);
   }
-
-  console.log(lapTime);
 
   return (
     <>
       <ol>
-        <li id='lap'>
+        <div id='lap'>
           <h1>{formatter(passedSecond)}</h1>
-        </li>
+        </div>
         <button onClick={handleStart}>START</button>
         <button onClick={handleRecord}>RECORD</button>
       </ol>
@@ -74,7 +72,7 @@ export default function Lap() {
           return (
             <li id='lap' key={time.id}>
               <div className='latTime'>{time.lapTime}</div>
-              <Input handleInput={handleInput} />
+              <Input handleInput={handleInput} keyId={time.id} />
             </li>
           );
         })}
