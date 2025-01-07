@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import Input from './Input';
+import formatter from '../utils/formatter';
 
 export default function Lap() {
   const nowTime = useRef(null);
@@ -31,7 +32,8 @@ export default function Lap() {
         return [
           {
             id: Math.random() * 100,
-            lapTime: (currentElapedTime / 1000).toFixed(2),
+            // lapTime: (currentElapedTime / 1000).toFixed(2),
+            lapTime: formatter(currentElapedTime),
             title: null,
           },
           ...prev,
@@ -41,9 +43,9 @@ export default function Lap() {
     }
   }
 
-  let passedSecond = elapsTime / 1000;
+  let passedSecond = elapsTime;
   if (startTime !== null && now !== null) {
-    passedSecond += (now - startTime) / 1000;
+    passedSecond += now - startTime;
     // [passedSecond, ...lapTimeArray.current];
   }
 
@@ -51,7 +53,7 @@ export default function Lap() {
     <>
       <ol>
         <li id='lap'>
-          <h1>{passedSecond.toFixed(2)}</h1>
+          <h1>{formatter(passedSecond)}</h1>
         </li>
         <button onClick={handleStart}>START</button>
         <button onClick={handleRecord}>RECORD</button>
@@ -60,7 +62,7 @@ export default function Lap() {
         {lapTime.map((time) => {
           return (
             <li id='lap' key={time.id}>
-              <div>{time.lapTime}</div>
+              <div className='latTime'>{time.lapTime}</div>
               <Input />
             </li>
           );

@@ -5,7 +5,7 @@ const LapContainer = styled.ol`
   padding-inline-start: 0;
   margin-block-start: 0;
   margin-block-end: 0;
-  width: 50vw;
+  width: 75vw;
 `;
 
 export default function Timer() {
