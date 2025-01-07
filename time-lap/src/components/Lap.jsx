@@ -17,16 +17,16 @@ export default function Lap() {
 
     clearInterval(nowTime.current);
     nowTime.current = setInterval(() => {
+      console.log('setInterval Work!');
       setNow(Date.now());
     }, 10);
   }
 
-  function handleStop() {
+  function handleRecord() {
     clearInterval(nowTime.current);
     if (startTime !== null) {
       const currentElapedTime = Date.now() - startTime;
       setElapsTime((prev) => (prev += currentElapedTime));
-      setStartTime(null);
       setLapTime((prev) => {
         return [
           {
@@ -37,6 +37,7 @@ export default function Lap() {
           ...prev,
         ];
       });
+      setStartTime(null);
     }
   }
 
@@ -53,7 +54,7 @@ export default function Lap() {
           <h1>{passedSecond.toFixed(2)}</h1>
         </li>
         <button onClick={handleStart}>START</button>
-        <button onClick={handleStop}>STOP</button>
+        <button onClick={handleRecord}>RECORD</button>
       </ol>
       <ol>
         {lapTime.map((time) => {

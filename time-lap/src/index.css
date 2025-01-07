@@ -13,6 +13,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@keyframes blinking {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: blue;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* 기본 input 스타일 */
+.input {
+  font-size: 16px;
+  color: white;
+  padding: 5px 10px;
+  width: 75%;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+/* 포커스 시 애니메이션 적용 */
+.input:focus {
+  background: blue;
+  animation: blinking 2s infinite;
+}
+
+/* input placeholder 스타일 */
+.input::placeholder {
+  color: lightgray;
+}
+
 button {
   all: unset;
   margin-right: 15px;

@@ -9,11 +9,6 @@ const StyledInput = styled.input`
   width: 75%;
   outline: none;
 
-  &:focus {
-    border: none;
-    background: gray;
-  }
-
   &::placeholder {
     color: gray;
   }
@@ -21,15 +16,21 @@ const StyledInput = styled.input`
 
 const Input = memo(function Input() {
   const [inputVal, setInputVal] = useState('');
+
   const inputs = useRef(null);
-  console.log('input rendered');
 
   function handleClick() {
     setInputVal(inputs.current.value);
   }
+
   return (
     <>
-      <StyledInput ref={inputs} type='text' placeholder='Tag your time' />
+      <StyledInput
+        ref={inputs}
+        type='text'
+        placeholder='Tag your time'
+        className='input'
+      />
       <button onClick={handleClick}>set</button>
     </>
   );
