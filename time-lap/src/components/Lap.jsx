@@ -18,7 +18,6 @@ export default function Lap() {
 
     clearInterval(nowTime.current);
     nowTime.current = setInterval(() => {
-      console.log('setInterval Work!');
       setNow(Date.now());
     }, 10);
   }
@@ -49,6 +48,18 @@ export default function Lap() {
     // [passedSecond, ...lapTimeArray.current];
   }
 
+  function handleInput(inputValue) {
+    setLapTime((prev) => {
+      return [
+        {
+          title: inputValue, // 다시 시도
+        },
+      ];
+    });
+  }
+
+  console.log(lapTime);
+
   return (
     <>
       <ol>
@@ -63,7 +74,7 @@ export default function Lap() {
           return (
             <li id='lap' key={time.id}>
               <div className='latTime'>{time.lapTime}</div>
-              <Input />
+              <Input handleInput={handleInput} />
             </li>
           );
         })}

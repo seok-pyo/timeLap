@@ -1,4 +1,4 @@
-import { useState, useRef, memo } from 'react';
+import { useRef, memo } from 'react';
 import { styled } from 'styled-components';
 
 const StyledInput = styled.input`
@@ -14,13 +14,11 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = memo(function Input() {
-  const [inputVal, setInputVal] = useState('');
-
+const Input = memo(function Input({ handleInput }) {
   const inputs = useRef(null);
 
   function handleClick() {
-    setInputVal(inputs.current.value);
+    handleInput(inputs.current.value);
   }
 
   return (
