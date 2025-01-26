@@ -31,7 +31,6 @@ export default function Lap() {
         return [
           {
             id: Math.random() * 100,
-            // lapTime: (currentElapedTime / 1000).toFixed(2),
             lapTime: formatter(currentElapedTime),
             title: null,
           },
@@ -45,11 +44,9 @@ export default function Lap() {
   let passedSecond = elapsTime;
   if (startTime !== null && now !== null) {
     passedSecond += now - startTime;
-    // [passedSecond, ...lapTimeArray.current];
   }
 
   function handleInput(inputValue, id) {
-    // console.log('this is inside of handleInput', inputValue, id);
     setLapTime((prev) => {
       return prev.map((time) =>
         time.id === id ? { ...time, title: inputValue } : time

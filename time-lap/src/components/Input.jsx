@@ -15,10 +15,7 @@ const StyledInput = styled.input`
 `;
 
 const Input = memo(function Input({ handleInput, keyId }) {
-  // console.log('INPUT RENDERED');
   const inputs = useRef(null);
-
-  // console.log('this is input Value', inputs.current.value);
 
   return (
     <>
